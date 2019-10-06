@@ -9,17 +9,17 @@ script:
   - docker run stephengrider/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t stephengrider/multi-client ./client
-  - docker build -t stephengrider/multi-nginx ./nginx
-  - docker build -t stephengrider/multi-server ./server
-  - docker build -t stephengrider/multi-worker ./worker
+  - docker build -t imrankpathan/multi-container-client ./client
+  - docker build -t imrankpathan/multi-container-nginx ./nginx
+  - docker build -t imrankpathan/multi-container-server ./server
+  - docker build -t imrankpathan/multi-container-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push stephengrider/multi-client
-  - docker push stephengrider/multi-nginx
-  - docker push stephengrider/multi-server
-  - docker push stephengrider/multi-worker
+  - docker push imrankpathan/multi-container-client
+  - docker push imrankpathan/multi-container-nginx
+  - docker push imrankpathan/multi-container-server
+  - docker push imrankpathan/multi-container-worker
 
 deploy:
   provider: elasticbeanstalk
